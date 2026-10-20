@@ -1,0 +1,14 @@
+services:
+  backend:
+    build: ./backend
+    environment:
+      DFIS_DATA_DIR: /data
+      DFIS_CORS_ORIGINS: http://localhost:8080
+    volumes: [dfis-data:/data]
+    ports: ["8000:8000"]
+  frontend:
+    build: ./frontend
+    ports: ["8080:80"]
+    depends_on: [backend]
+volumes:
+  dfis-data:
